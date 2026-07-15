@@ -3,13 +3,27 @@
   --font-weight-regular: 400;
   --font-weight-bold: 700;
   
-  --fs-hero: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem); 
+  --fs-hero: 116px; 
   
+  /* Основные цвета (Темная тема по умолчанию) */
   --bg-color: #000028;
   --text-color: #F1B2CE;
   --title-color: #000028;
+  
+  /* Акценты и фоны */
   --accent-color: #FF0070;
-  --accent-color-alpha: rgba(255, 0, 112, 0.4);
+  
+  /* Логотип и его тень */
+  --logo-color: #DB00FF;
+  --shadow-color: #FF0070;
+  
+  /* Декоративные элементы (меню, рамки, уголки, обычные заголовки) */
+  --decor-color: #FF0070;
+  --decor-color-alpha: rgba(255, 0, 112, 0.4);
+  
+  /* Ссылки и индикатор REC */
+  --link-shadow: #FF0070;
+  --rec-dot-color: #FF0070;
   
   --bg-image: url('../images/cover-image-dark.png'); 
 }

@@ -1,27 +1,31 @@
-:root.theme-light {
-  --bg-color: #F5F5F5;
+/* ============================================================
+   СВЕТЛАЯ ТЕМА
+   ============================================================ */
+.theme-light {
+  --bg-color: #FFF1F7;
   --text-color: #353430;
-  --title-color: #F5F5F5;
-  --accent-color: #FF8DCB;
-  --accent-color-alpha: rgba(255, 141, 203, 0.4);
+  --title-color: #353430;
+  --accent-color: #FF8DCB; /* Точный цвет плашки из макета (Rectangle 50) */
+  --logo-color: #FFC2E6;
+  --shadow-color: #FF8DCB;
+  --decor-color: #353430;
+  --decor-color-alpha: rgba(53, 52, 48, 0.4);
+  --rec-display: none; /* ЖЕСТКО СКРЫВАЕМ REC В СВЕТЛОЙ ТЕМЕ */
   --bg-image: url('../images/cover-image-light.png');
 }
 
-:root.theme-light .header__rec {
-  display: none;
-}
-
+/* Поддержка системной светлой темы */
 @media (prefers-color-scheme: light) {
-  :root {
-    --bg-color: #F5F5F5;
+  :root:not(.theme-dark) {
+    --bg-color: #FFF1F7;
     --text-color: #353430;
-    --title-color: #F5F5F5;
+    --title-color: #353430;
     --accent-color: #FF8DCB;
-    --accent-color-alpha: rgba(255, 141, 203, 0.4);
+    --logo-color: #FFC2E6;
+    --shadow-color: #FF8DCB;
+    --decor-color: #353430;
+    --decor-color-alpha: rgba(53, 52, 48, 0.4);
+    --rec-display: none;
     --bg-image: url('../images/cover-image-light.png');
-  }
-
-  .header__rec {
-    display: none;
   }
 }

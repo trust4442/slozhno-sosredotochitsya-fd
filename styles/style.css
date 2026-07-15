@@ -1,30 +1,39 @@
+/* ==============================
+   БАЗОВЫЕ СТИЛИ И ПЕРЕМЕННЫЕ (Mobile First - 375x668)
+   ============================== */
 :root {
   --font-family-base: 'IBM Plex Mono', monospace;
   --font-weight-regular: 400;
   --font-weight-bold: 700;
   
+  /* ТЕМНАЯ ТЕМА ПО УМОЛЧАНИЮ */
   --bg-color: #000028;
   --text-color: #F1B2CE;
   --title-color: #000028;
   --accent-color: #FF0070;
-  --accent-color-alpha: rgba(255, 0, 112, 0.4);
+  --logo-color: #DB00FF;
+  --shadow-color: #FF0070;
+  --decor-color: #FF0070;
+  --decor-color-alpha: rgba(255, 0, 112, 0.4);
+  --rec-display: flex; 
   --bg-image: url('../images/cover-image-dark.png'); 
 
   --fs-hero: 116px; 
 }
 
-body.page {
-  position: relative;
-  min-height: 6771px; 
-}
-
+/* ==============================
+   ШАПКА (Mobile First - 375px)
+   ============================== */
 .header {
-  display: block;
   position: relative;
-  height: 668px; 
-  padding: 0;
+  height: 100vh;
+  min-height: 668px; /* По чек-листу: vh + min-height px */
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
+/* Декоративные и интерфейсные элементы (допускается absolute) */
 .header__theme-menu {
   position: absolute;
   top: 75px;
@@ -43,42 +52,12 @@ body.page {
   height: 26px;
 }
 
-.header__title {
-  display: block;
-  position: absolute;
-  top: 238px;
-  left: 10px;
-  width: 355px; 
-  margin: 0;
-  padding: 0;
-  font-size: var(--fs-hero);
-  color: #DB00FF; 
-  font-weight: var(--font-weight-bold);
-  line-height: 83%;
-  letter-spacing: -4px;
-  text-shadow: 4px 4px 0 var(--accent-color);
-}
-
-.header__description {
-  position: absolute;
-  top: 485px;
-  left: 10px;
-  width: 355px;
-  height: 117px;
-  margin: 0;
-  padding: 15px 10px; 
-  display: flex;
-  align-items: center;
-  font-weight: var(--font-weight-bold);
-  line-height: 23.4px;
-}
-
 .header__rec {
   position: absolute;
   top: 10px;
   right: 19px; 
-  color: var(--accent-color);
-  display: flex;
+  color: var(--decor-color);
+  display: var(--rec-display); 
   align-items: center;
   gap: 10px;
   line-height: 1;
@@ -100,66 +79,81 @@ body.page {
   position: absolute;
   width: 25px;
   height: 25px;
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--decor-color);
   pointer-events: none;
 }
 
-.decor-zone::before {
-  top: 10px;
-  right: 10px;
-  border-bottom: none;
-  border-left: none;
+.decor-zone::before { top: 10px; right: 10px; border-bottom: none; border-left: none; }
+.decor-zone::after { bottom: 20px; left: 10px; border-top: none; border-right: none; }
+
+/* Контент шапки (в естественном потоке) */
+.header__title {
+  margin-top: 228px; /* 238px от края минус 10px padding */
+  width: 100%;
+  max-width: 355px;
+  font-size: var(--fs-hero);
+  color: var(--logo-color); 
+  font-weight: var(--font-weight-bold);
+  line-height: 83%;
+  letter-spacing: -4px;
+  text-shadow: 4px 4px 0 var(--shadow-color);
 }
 
-.decor-zone::after {
-  bottom: 20px;
-  left: 10px;
-  border-top: none;
-  border-right: none;
+.header__description {
+  margin-top: 55px; /* Точный отступ из твоих замеров */
+  width: 100%;
+  max-width: 355px;
+  height: 117px;
+  display: flex;
+  align-items: center;
+  font-weight: var(--font-weight-bold);
+  line-height: 23.4px;
 }
 
+
+/* ==============================
+   ОСНОВНОЙ КОНТЕНТ (Mobile First)
+   ============================== */
 .main-content {
-  display: block;
-  padding: 0; 
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px; 
+  margin-top: 40px;    /* От почему сосредоточиться так сложно до header - 40 */
+  gap: 50px;           /* Расстояние между всеми секциями - 50px */
+  margin-bottom: 40px; /* От футера до галереи - 40 */
 }
 
+/* Каждая секция - гибкий флекс-контейнер */
 .section {
-  position: absolute;
-  left: 10px;
-  width: 355px;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* между заголовком секции и блоком контента */
+  width: 100%;
+  max-width: 355px;
 }
 
-.section.reasons { top: 708px; }   
-.section.reducers { top: 1707px; } 
-.section.tips { top: 2876px; }     
-.section.gallery { top: 4663px; }  
+/* Исключение для галереи на мобилке - там отступ 10px */
+.section.gallery {
+  gap: 10px;
+}
 
 .section__content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 20px; /* Между карточками */
 }
 
+/* --- ЗАГОЛОВКИ СЕКЦИЙ --- */
 .section__title {
-  color: var(--accent-color);
+  color: var(--decor-color);
   font-size: 18px;
   font-weight: var(--font-weight-bold);
-}
-
-.reasons .section__title {
-  height: 47px;
-  margin-bottom: 20px;
-}
-
-.reducers .section__title {
-  height: 47px;
-  margin-bottom: 10px; 
+  /* Высоты задаем для точного совпадения переноса строк */
+  height: 47px; 
 }
 
 .tips .section__title {
-  height: 70px;
-  margin-bottom: 20px; 
+  height: 70px; /* 3 строки */
 }
 
 .gallery .section__title {
@@ -169,15 +163,15 @@ body.page {
   display: flex;
   align-items: center;
   padding: 0 4px;
-  margin-bottom: 20px;
 }
 
+/* --- ПЛАШКИ КАРТОЧЕК --- */
 .card__title {
   height: 23px;
   display: flex;
   align-items: center;
   padding: 0 4px;
-  margin-bottom: 8px;
+  margin-bottom: 10px; /* Между плашкой и текстом - 10px */
   font-size: 18px;
   font-weight: var(--font-weight-bold);
 }
@@ -187,7 +181,7 @@ body.page {
   display: flex;
   align-items: center;
   padding: 0 4px;
-  margin: 0; 
+  margin: 0; /* Обнулен, отступ берется из gap: 20px родителя */
   font-size: 18px;
   font-weight: var(--font-weight-bold);
   background-color: var(--accent-color); 
@@ -208,6 +202,7 @@ body.page {
   font-weight: var(--font-weight-regular);
 }
 
+/* --- ГАЛЕРЕЯ (375px) --- */
 .gallery__grid {
   display: flex;
   flex-direction: column;
@@ -226,97 +221,79 @@ body.page {
 .gallery__grid img:nth-child(4) { height: 355px; }
 .gallery__grid img:nth-child(5) { height: 237px; }
 
+/* ==============================
+   ПОДВАЛ (Mobile First)
+   ============================== */
 .footer {
-  display: block;
-  position: absolute;
-  top: 6103px; 
-  left: 0;
-  height: 668px;
-  width: 100%;
-  padding: 0;
+  position: relative;
+  height: 100vh;
+  min-height: 668px; /* По чек-листу */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .footer__title {
-  position: absolute;
-  top: 286px;
-  left: 14px;
-  margin: 0;
-  padding: 0;
   font-size: var(--fs-hero);
-  color: #DB00FF; 
+  color: var(--logo-color); 
   font-weight: var(--font-weight-bold);
   line-height: 83%;
   letter-spacing: -4px;
-  text-shadow: 2px 2px 0 var(--accent-color);
+  text-shadow: 2px 2px 0 var(--shadow-color);
+  margin: 0;
 }
 
 
+/* ==============================
+   АДАПТИВ ПЛАНШЕТ (>= 768px)
+   ============================== */
 @media (min-width: 768px) {
   :root {
     --fs-hero: 120px;
   }
 
-  body.page {
-    min-height: 5850px; 
-  }
-
+  /* --- ШАПКА 768px --- */
   .header {
-    height: 1024px;
+    min-height: 1024px;
+    padding: 20px;
   }
   
-  .header__theme-menu {
-    top: 192px;
-    right: 20px;
-  }
-
-  .theme-menu__list {
-    gap: 4px;
-  }
-
-  .header__title {
-    top: 463px;
-    left: 20px;
-    width: 576.84px;
-  }
-
-  .header__description {
-    top: 724px;
-    left: 384px;
-    width: 364px;
-    height: 117px;
-    padding: 0 10px; 
-  }
-
-  .header__rec {
-    top: 20px;
-    right: 29px;
-  }
-
+  .header__theme-menu { top: 192px; right: 20px; }
+  .theme-menu__list { gap: 4px; }
+  .header__rec { top: 20px; right: 29px; }
   .decor-zone::before { top: 20px; right: 20px; }
   .decor-zone::after { bottom: 20px; left: 20px; }
 
+  .header__title {
+    margin-top: 443px; /* 463 - 20 padding */
+    max-width: 576.84px;
+  }
+
+  .header__description {
+    margin-top: 162px; /* Из твоих замеров */
+    align-self: flex-end; /* Уходит в правый край */
+    max-width: 364px;
+  }
+
+  /* --- ОСНОВНОЙ КОНТЕНТ 768px --- */
+  .main-content {
+    padding: 0 20px;
+    margin-top: 60px;
+    gap: 80px; 
+    margin-bottom: 60px;
+  }
+
   .section {
-    left: 20px; 
-    width: 728px;
+    max-width: 728px;
+    margin: 0 auto; /* Центруем контент на больших экранах, если нужно */
   }
 
-  .section.reasons { top: 1084px; }
-  .section.reducers { top: 1812px; }
-  .section.tips { top: 2567px; }
-  .section.gallery { top: 3943px; }
-
-  .footer {
-    top: 4826px;
-    height: 1024px;
+  .section.gallery {
+    gap: 20px; /* На планшете возвращается отступ 20px */
   }
 
-  .footer__title {
-    top: 463px;
-    left: 204px;
-    width: 360px;
-    text-shadow: 2px 2px 0 var(--accent-color);
-  }
-
+  /* --- ВНУТРЕННЯЯ СЕТКА 768px --- */
   .reasons, .tips {
     display: grid;
     grid-template-columns: 236px 1fr;
@@ -324,26 +301,20 @@ body.page {
   }
   
   .section__title {
-    height: auto;
-    margin-bottom: 0;
+    height: auto; 
   }
 
   .reducers .section__title {
     width: 236px;
-    margin-bottom: 10px;
+    height: 70px;
   }
 
   .gallery .section__title {
     height: 24px;
-    margin-bottom: 0;
   }
 
   .card__subtitle {
-    height: 23px;
-  }
-
-  .reducers .section__content {
-    display: flex;
+    height: 23px; /* 1 строка на планшете */
   }
 
   .gallery__grid {
@@ -351,81 +322,55 @@ body.page {
     grid-template-columns: 229px 230px 229px;
     grid-template-rows: 192px 230px 318px; 
     gap: 20px;
-    margin-top: 20px;
   }
 
   .gallery__grid img:nth-child(n) { height: 100%; }
-
   .gallery__grid img:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
   .gallery__grid img:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; }
   .gallery__grid img:nth-child(3) { grid-column: 1 / 2; grid-row: 2 / 4; }
   .gallery__grid img:nth-child(4) { grid-column: 2 / 3; grid-row: 2 / 3; }
   .gallery__grid img:nth-child(5) { grid-column: 2 / 4; grid-row: 3 / 4; }
+
+  /* --- ПОДВАЛ 768px --- */
+  .footer {
+    min-height: 1024px;
+    padding: 20px;
+  }
 }
 
 
+/* ==============================
+   АДАПТИВ ДЕСКТОП (>= 1024px)
+   ============================== */
 @media (min-width: 1024px) {
   
   :root {
     --fs-hero: 157px; 
   }
 
-  body.page {
-    min-height: 5008px;
-  }
-
+  /* --- ШАПКА 1024px --- */
   .header {
-    height: 768px;
+    min-height: 768px;
   }
   
-  .header__theme-menu {
-    top: 20px;
-    left: 397px;
-    right: auto;
-  }
-
-  .theme-menu__list {
-    flex-direction: row; 
-    gap: 14px;
-  }
-
-  .header__theme-menu-button {
-    width: auto;
-  }
+  .header__theme-menu { top: 20px; left: 397px; right: auto; }
+  .theme-menu__list { flex-direction: row; gap: 14px; }
+  .header__theme-menu-button { width: auto; }
   
   .header__title {
-    top: 318px;
-    left: 20px;
-    width: 759px;
-    text-shadow: 4px 4px 0 var(--accent-color);
+    margin-top: 298px; /* 318 - 20 */
+    max-width: 759px;
   }
 
   .header__description {
-    top: 563px;
-    left: 513px;
-    width: 491px;
-    height: 70px;
-    padding: 0 15px; 
+    margin-top: 115px; /* Идеальное попадание под 114 из замеров */
+    max-width: 491px;
+    height: 71px; 
   }
 
+  /* --- ОСНОВНОЙ КОНТЕНТ 1024px --- */
   .section {
-    width: 984px;
-  }
-
-  .section.reasons { top: 828px; }
-  .section.reducers { top: 1416px; }
-  .section.tips { top: 1994px; }
-  .section.gallery { top: 3089px; }
-
-  .footer {
-    top: 4240px;
-    height: 768px;
-  }
-
-  .footer__title {
-    top: 318px;
-    left: 277px;
-    width: 471px;
+    max-width: 984px;
   }
 
   .reasons, .tips {
@@ -434,7 +379,7 @@ body.page {
   
   .reducers .section__title {
     width: 315px;
-    margin-bottom: 0;
+    height: 47px; 
   }
 
   .reducers .section__content {
@@ -445,6 +390,10 @@ body.page {
   .gallery__grid {
     grid-template-columns: 315px 315px 314px;
     grid-template-rows: 260px 315px 433px; 
-    margin-top: 10px;
+  }
+
+  /* --- ПОДВАЛ 1024px --- */
+  .footer {
+    min-height: 768px;
   }
 }

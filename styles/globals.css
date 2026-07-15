@@ -24,7 +24,7 @@ body.page {
 a {
   color: inherit;
   text-decoration: none;
-  text-shadow: 2px 2px 0 var(--accent-color);
+  text-shadow: 2px 2px 0 var(--link-shadow);
   border-bottom: 1px solid transparent;
   transition: border-bottom-color 0.3s ease;
 }
@@ -48,7 +48,7 @@ a:focus-visible {
   appearance: none;
   background: transparent;
   border: 1px solid transparent;
-  color: var(--accent-color);
+  color: var(--decor-color); /* В светлой теме будет #353430 */
   font-family: var(--font-family-base);
   font-size: 18px;
   line-height: 18px;
@@ -60,15 +60,15 @@ a:focus-visible {
 }
 
 .header__theme-menu-button:hover {
-  border-color: var(--accent-color-alpha);
+  border-color: var(--decor-color-alpha);
 }
 
 .header__theme-menu-button:focus-visible {
   outline: none;
-  border-bottom-color: var(--accent-color);
+  border-bottom-color: var(--decor-color);
 }
 
 .header__theme-menu-button_active {
   pointer-events: none;
-  border-color: var(--accent-color);
+  border-color: var(--decor-color);
 }

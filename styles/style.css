@@ -79,9 +79,10 @@ a:focus-visible {
   border: 1px solid var(--text-color);
 }
 
-.header, 
+.header,
 .footer {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 668px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -154,7 +155,7 @@ a:focus-visible {
   box-shadow: 0 0 4px 2px var(--accent-color);
 }
 
-.decor-zone::before, 
+.decor-zone::before,
 .decor-zone::after {
   content: "";
   position: absolute;
@@ -187,7 +188,6 @@ a:focus-visible {
   font-weight: var(--font-weight-bold);
   line-height: 83%;
   letter-spacing: 0;
-  word-spacing: -20px;
   text-shadow: 4px 4px 0 var(--shadow-color);
 }
 
@@ -195,8 +195,6 @@ a:focus-visible {
   margin-top: 55px;
   width: 100%;
   max-width: 355px;
-  display: flex;
-  align-items: center;
   font-weight: var(--font-weight-bold);
   line-height: 23.4px;
 }
@@ -235,18 +233,20 @@ a:focus-visible {
 }
 
 .gallery .section__title {
+  display: flex;
+  align-items: center;
+  width: 100%;
   background-color: var(--accent-color);
   color: var(--title-color);
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0 4px;
+  padding: 0 10px;
   margin-bottom: 20px;
 }
 
 .card__title {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: var(--font-weight-bold);
@@ -255,9 +255,10 @@ a:focus-visible {
 }
 
 .card__subtitle {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
   margin-bottom: 0;
   font-size: 18px;
   font-weight: var(--font-weight-bold);
@@ -323,7 +324,6 @@ a:focus-visible {
   font-weight: var(--font-weight-bold);
   line-height: 83%;
   letter-spacing: 0;
-  word-spacing: -20px;
   text-shadow: 2px 2px 0 var(--shadow-color);
   margin: 0;
 }
@@ -331,6 +331,11 @@ a:focus-visible {
 @media (min-width: 768px) {
   :root {
     --fs-hero: 120px;
+  }
+
+  .header,
+  .footer {
+    min-height: 1024px;
   }
 
   .header {
@@ -384,7 +389,7 @@ a:focus-visible {
     margin-top: 0;
   }
 
-  .reasons, 
+  .reasons,
   .tips {
     display: grid;
     grid-template-columns: 236px 1fr;
@@ -402,36 +407,32 @@ a:focus-visible {
     gap: 20px;
   }
 
-  /* ЖЕСТКИЙ СБРОС ВЫСОТЫ, ЧТОБЫ ПЕРЕБИТЬ МОБИЛКУ */
-  .gallery__grid img:nth-child(1),
-  .gallery__grid img:nth-child(2),
-  .gallery__grid img:nth-child(3),
-  .gallery__grid img:nth-child(4),
-  .gallery__grid img:nth-child(5) {
-    height: 100%;
-  }
-
   .gallery__grid img:nth-child(1) {
+    height: 100%;
     grid-column: 1 / 3;
     grid-row: 1 / 2;
   }
 
   .gallery__grid img:nth-child(2) {
+    height: 100%;
     grid-column: 3 / 4;
     grid-row: 1 / 3;
   }
 
   .gallery__grid img:nth-child(3) {
+    height: 100%;
     grid-column: 1 / 2;
     grid-row: 2 / 4;
   }
 
   .gallery__grid img:nth-child(4) {
+    height: 100%;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
 
   .gallery__grid img:nth-child(5) {
+    height: 100%;
     grid-column: 2 / 4;
     grid-row: 3 / 4;
   }
@@ -444,6 +445,11 @@ a:focus-visible {
 @media (min-width: 1024px) {
   :root {
     --fs-hero: 157px;
+  }
+
+  .header,
+  .footer {
+    min-height: 768px;
   }
 
   .header__theme-menu {
@@ -474,7 +480,7 @@ a:focus-visible {
     max-width: 984px;
   }
 
-  .reasons, 
+  .reasons,
   .tips {
     grid-template-columns: 315px 1fr;
   }

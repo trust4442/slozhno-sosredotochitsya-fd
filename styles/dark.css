@@ -1,4 +1,4 @@
-.theme-dark {
+:root.theme-dark {
   --bg-color: #000028;
   --text-color: #F1B2CE;
   --title-color: #000028;
